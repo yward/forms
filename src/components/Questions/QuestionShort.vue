@@ -61,17 +61,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss">
-// Using type to have a higher order than the input styling of server
-.question__input[type=text] {
-	width: 100%;
-	min-height: 44px;
-	margin: 0;
-	padding: 6px 0;
-	border: 0;
-	border-bottom: 1px dotted var(--color-border-dark);
-	border-radius: 0;
-}
-
-</style>

@@ -157,7 +157,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .question {
 	position: relative;
 	display: flex;
@@ -227,12 +227,39 @@ export default {
 		}
 
 		&-menu.action-item {
-			position: sticky;
-			top: var(--header-height);
 			// above other actions
 			z-index: 50;
 		}
 	}
-}
 
+	&__input {
+		&[type=text] {
+			width: 100%;
+			min-height: 38px; // =44-margin
+			margin: 0 0 6px 0;
+			padding: 6px 0 0 0;
+			border: 0;
+			border-bottom: 1px dotted var(--color-border-dark) !important;
+			border-radius: 0;
+			font-size: 14px;
+		}
+
+		// Long text input (textarea)
+		&--longtext {
+			// make sure height calculations are correct
+			box-sizing: content-box !important;
+			width: 100%;
+			min-width: 100%;
+			max-width: 100%;
+			min-height: 38px; // = 44px-margin
+			margin: 0 0 6px 0;
+			padding: 6px 0 0 0;
+			border: 0;
+			border-bottom: 1px dotted var(--color-border-dark);
+			border-radius: 0;
+			resize: none;
+			font-size: 14px;
+		}
+	}
+}
 </style>

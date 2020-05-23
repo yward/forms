@@ -59,6 +59,7 @@
 					ref="input"
 					:answer="answer"
 					:index="index"
+					:is-unique="isUnique"
 					:max-option-length="maxStringLengths.optionText"
 					@add="addNewEntry"
 					@delete="deleteAnswer"
@@ -67,6 +68,7 @@
 			</template>
 
 			<li v-if="(edit && !isLastEmpty) || hasNoAnswer" class="question__item">
+				<div class="question__item__pseudoInput" :class="{'question__item__pseudoInput--unique':isUnique}" />
 				<input
 					:aria-label="t('forms', 'Add a new answer')"
 					:placeholder="t('forms', 'Add a new answer')"
@@ -285,6 +287,25 @@ export default {
 	align-items: center;
 	min-height: 44px;
 
+	// Just taking styles from server radio-input items
+	&__pseudoInput {
+		flex-shrink: 0;
+		display: inline-block;
+		height: 16px;
+		width: 16px !important;
+		vertical-align: middle;
+		margin: 0 14px 0px 0px;
+		border: 1px solid #878787;
+
+		&--unique {
+			border-radius: 50%;
+		}
+
+		&:hover {
+			border-color: var(--color-primary-element);
+		}
+	}
+
 	.question__label {
 		flex: 1 1 100%;
 		// Overwrite guest page core styles
@@ -297,23 +318,13 @@ export default {
 	}
 }
 
-// Using type to have a higher order than the input styling of server
-.question__input[type=text] {
-	width: 100%;
-	min-height: 44px;
-	margin: 0;
-	padding: 6px 0;
-	border: 0;
-	border-bottom: 1px dotted var(--color-border-dark);
-	border-radius: 0;
-}
-
 input.question__radio,
 input.question__checkbox {
 	z-index: -1;
 	// make sure browser warnings are properly
 	// displayed at the correct location
-	left: 22px;
+	left: 0px;
+	width: 16px;
 }
 
 </style>

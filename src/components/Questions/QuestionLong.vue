@@ -36,7 +36,7 @@
 				:placeholder="t('forms', 'Long answer text')"
 				:required="mandatory"
 				:value="values[0]"
-				class="question__text"
+				class="question__input--longtext"
 				:maxlength="maxStringLengths.answerText"
 				minlength="1"
 				@input="onInput"
@@ -77,22 +77,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss">
-// Using type to have a higher order than the input styling of server
-.question__text {
-	// make sure height calculations are correct
-	box-sizing: content-box !important;
-	width: 100%;
-	min-width: 100%;
-	max-width: 100%;
-	min-height: 44px;
-	margin: 0;
-	padding: 6px 0;
-	border: 0;
-	border-bottom: 1px dotted var(--color-border-dark);
-	border-radius: 0;
-	resize: none;
-}
-
-</style>
