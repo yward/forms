@@ -27,6 +27,7 @@
 		:mandatory="mandatory"
 		:edit.sync="edit"
 		:max-question-length="maxStringLengths.questionText"
+		:shift-drag-handle="shiftDragHandle"
 		@update:text="onTitleChange"
 		@update:mandatory="onMandatoryChange"
 		@delete="onDelete">
@@ -115,6 +116,10 @@ export default {
 
 		areNoneChecked() {
 			return this.values.length === 0
+		},
+
+		shiftDragHandle() {
+			return this.edit && this.options.length !== 0 && !this.isLastEmpty
 		},
 	},
 
