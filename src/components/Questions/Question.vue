@@ -45,7 +45,10 @@
 				required
 				@input="onTitleChange">
 			<h3 v-else class="question__header-title" v-text="computedText" />
-			<div v-if="!edit && !questionValid" v-tooltip.auto="warningInvalid" class="question__header-warning icon-error-color" />
+			<div v-if="!edit && !questionValid"
+				v-tooltip.auto="warningInvalid"
+				class="question__header-warning icon-error-color"
+				tabindex="0" />
 			<Actions v-if="!readOnly" class="question__header-menu" :force-menu="true">
 				<ActionCheckbox :checked="mandatory"
 					@update:checked="onMandatoryChange">
@@ -245,6 +248,10 @@ export default {
 
 		&-title[type=text] {
 			border-bottom-color: var(--color-border-dark);
+		}
+
+		&-warning {
+			padding: 22px;
 		}
 
 		&-menu.action-item {
