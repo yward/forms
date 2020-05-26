@@ -42,7 +42,7 @@ export default {
 		validate: question => question.options.length > 0,
 
 		titlePlaceholder: t('forms', 'Multiple choice question title'),
-		warningInvalid: t('forms', 'This question needs a title and at least one option!'),
+		warningInvalid: t('forms', 'This question needs a title and at least one answer!'),
 	},
 
 	multiple: {
@@ -53,7 +53,7 @@ export default {
 		validate: question => question.options.length > 0,
 
 		titlePlaceholder: t('forms', 'Checkbox question title'),
-		warningInvalid: t('forms', 'This question needs a title and at least one option!'),
+		warningInvalid: t('forms', 'This question needs a title and at least one answer!'),
 	},
 
 	short: {
