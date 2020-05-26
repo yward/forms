@@ -221,6 +221,7 @@ export default {
 		}
 		.form-desc {
 			font-size: 100%;
+			line-height: 150%;
 			padding-bottom: 20px;
 			resize: none;
 		}

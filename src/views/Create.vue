@@ -443,7 +443,8 @@ export default {
 			white-space: nowrap;
 		}
 		.form-desc {
-			font-size: 100%;
+			font-size: 100% !important;
+			line-height: 150%;
 			padding-bottom: 20px;
 			resize: none;
 		}
