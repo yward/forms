@@ -37,19 +37,23 @@ export default {
 		component: QuestionMultiple,
 		icon: 'icon-answer-multiple',
 		label: t('forms', 'Multiple choice'),
-		titlePlaceholder: t('forms', 'Multiple choice question title'),
 		unique: true,
 		// Define conditions where this questions is not ok
 		validate: question => question.options.length > 0,
+
+		titlePlaceholder: t('forms', 'Multiple choice question title'),
+		warningInvalid: t('forms', 'This question needs a title and at least one option!'),
 	},
 
 	multiple: {
 		component: QuestionMultiple,
 		icon: 'icon-answer-checkbox',
 		label: t('forms', 'Checkboxes'),
-		titlePlaceholder: t('forms', 'Checkbox question title'),
 		// Define conditions where this questions is not ok
 		validate: question => question.options.length > 0,
+
+		titlePlaceholder: t('forms', 'Checkbox question title'),
+		warningInvalid: t('forms', 'This question needs a title and at least one option!'),
 	},
 
 	short: {
@@ -60,6 +64,7 @@ export default {
 		titlePlaceholder: t('forms', 'Short answer question title'),
 		submitPlaceholder: t('forms', 'Enter a short answer'),
 		createPlaceholder: t('forms', 'People can enter a short answer'),
+		warningInvalid: t('forms', 'This question needs a title!'),
 	},
 
 	long: {
@@ -70,6 +75,7 @@ export default {
 		titlePlaceholder: t('forms', 'Long text question title'),
 		submitPlaceholder: t('forms', 'Enter a long text'),
 		createPlaceholder: t('forms', 'People can enter a long text'),
+		warningInvalid: t('forms', 'This question needs a title!'),
 	},
 
 }

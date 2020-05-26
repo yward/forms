@@ -29,6 +29,8 @@
 		:read-only="readOnly"
 		:max-question-length="maxStringLengths.questionText"
 		:title-placeholder="answerType.titlePlaceholder"
+		:warning-invalid="answerType.warningInvalid"
+		:content-valid="contentValid"
 		@update:text="onTitleChange"
 		@update:mandatory="onMandatoryChange"
 		@delete="onDelete">
@@ -100,6 +102,10 @@ export default {
 	mixins: [QuestionMixin],
 
 	computed: {
+		contentValid() {
+			return this.answerType.validate(this)
+		},
+
 		isLastEmpty() {
 			const value = this.options[this.options.length - 1]
 			return value?.text?.trim().length === 0
