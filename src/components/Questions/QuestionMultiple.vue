@@ -299,7 +299,7 @@ export default {
 		height: 16px;
 		width: 16px !important;
 		vertical-align: middle;
-		margin: 0 14px 0px 0px;
+		margin: -1px 14px 0px 0px;
 		border: 1px solid #878787;
 
 		&--unique {
@@ -316,6 +316,8 @@ export default {
 		// Overwrite guest page core styles
 		text-align: left !important;
 		padding: 11px 0 11px 30px;
+		line-height: 22px;
+
 		&::before {
 			margin-left: -30px !important;
 			margin-right: 14px !important;

@@ -246,7 +246,7 @@ export default {
 		&[type=text] {
 			width: 100%;
 			min-height: 38px; // =44-margin
-			margin: 0 0 6px 0;
+			margin: 0 0 6px -0.5px; // fix for tiny view/edit difference
 			padding: 6px 0 0 0;
 			border: 0;
 			border-bottom: 1px dotted var(--color-border-dark) !important;
