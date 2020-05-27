@@ -229,6 +229,7 @@ export default {
 	border-bottom: 1px dotted var(--color-border-dark);
 	border-radius: 0;
 	font-size: 14px;
+	position: relative;
 }
 
 </style>

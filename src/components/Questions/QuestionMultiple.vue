@@ -299,6 +299,7 @@ export default {
 		line-height: 22px;
 		min-height: 34px;
 		height: min-content;
+		position: relative;
 
 		&::before {
 			box-sizing: border-box;
