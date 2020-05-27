@@ -295,7 +295,7 @@ export default {
 		flex: 1 1 100%;
 		// Overwrite guest page core styles
 		text-align: left !important;
-		padding: 0 0 0 30px;
+		padding: 6px 0 0 30px;
 		line-height: 22px;
 		min-height: 34px;
 		height: min-content;
