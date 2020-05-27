@@ -289,7 +289,6 @@ export default {
 .question__item {
 	position: relative;
 	display: inline-flex;
-	align-items: center;
 	min-height: 44px;
 
 	.question__label {
