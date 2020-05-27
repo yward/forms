@@ -223,9 +223,9 @@ export default {
 // Using type to have a higher order than the input styling of server
 .question__input[type=text] {
 	width: 100%;
-	min-height: 44px;
+	min-height: 34px;
 	margin: 0;
-	padding: 6px 0;
+	padding: 0 0;
 	border: 0;
 	border-bottom: 1px dotted var(--color-border-dark);
 	border-radius: 0;

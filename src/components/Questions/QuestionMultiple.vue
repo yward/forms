@@ -296,8 +296,10 @@ export default {
 		flex: 1 1 100%;
 		// Overwrite guest page core styles
 		text-align: left !important;
-		padding: 11px 0 11px 30px;
+		padding: 0 0 0 30px;
 		line-height: 22px;
+		min-height: 34px;
+
 		&::before {
 			box-sizing: border-box;
 			width: 16px;
