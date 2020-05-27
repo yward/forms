@@ -291,6 +291,28 @@ export default {
 	display: inline-flex;
 	min-height: 44px;
 
+	// Just taking styles from server radio-input items
+	&__pseudoInput {
+		flex-shrink: 0;
+		display: inline-block;
+		height: 16px;
+		width: 16px !important;
+		vertical-align: middle;
+		margin: 0 14px 0px 0px;
+		border: 1px solid #878787;
+		border-radius: 1px;
+		position: relative;
+		top: 12px;
+
+		&--unique {
+			border-radius: 50%;
+		}
+
+		&:hover {
+			border-color: var(--color-primary-element);
+		}
+	}
+
 	.question__label {
 		flex: 1 1 100%;
 		// Overwrite guest page core styles
@@ -315,12 +337,14 @@ export default {
 // Using type to have a higher order than the input styling of server
 .question__input[type=text] {
 	width: 100%;
-	min-height: 44px;
+	min-height: 35px;
 	margin: 0;
-	padding: 6px 0;
+	padding: 0 0;
 	border: 0;
 	border-bottom: 1px dotted var(--color-border-dark);
 	border-radius: 0;
+	font-size: 14px;
+	position: relative;
 }
 
 input.question__radio,
