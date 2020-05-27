@@ -93,6 +93,7 @@ export default {
 	border-bottom: 1px dotted var(--color-border-dark);
 	border-radius: 0;
 	resize: none;
+	font-size: 14px;
 }
 
 </style>
