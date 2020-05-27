@@ -27,6 +27,7 @@
 		:mandatory="mandatory"
 		:edit.sync="edit"
 		:max-question-length="maxStringLengths.questionText"
+		:shift-drag-handle="shiftDragHandle"
 		@update:text="onTitleChange"
 		@update:mandatory="onMandatoryChange"
 		@delete="onDelete">
@@ -59,6 +60,7 @@
 					ref="input"
 					:answer="answer"
 					:index="index"
+					:is-unique="isUnique"
 					:max-option-length="maxStringLengths.optionText"
 					@add="addNewEntry"
 					@delete="deleteAnswer"
@@ -67,6 +69,7 @@
 			</template>
 
 			<li v-if="(edit && !isLastEmpty) || hasNoAnswer" class="question__item">
+				<div class="question__item__pseudoInput" :class="{'question__item__pseudoInput--unique':isUnique}" />
 				<input
 					:aria-label="t('forms', 'Add a new answer')"
 					:placeholder="t('forms', 'Add a new answer')"
@@ -113,6 +116,10 @@ export default {
 
 		areNoneChecked() {
 			return this.values.length === 0
+		},
+
+		shiftDragHandle() {
+			return this.edit && this.options.length !== 0 && !this.isLastEmpty
 		},
 	},
 
@@ -284,6 +291,25 @@ export default {
 	display: inline-flex;
 	align-items: center;
 	min-height: 44px;
+
+	// Just taking styles from server radio-input items
+	&__pseudoInput {
+		flex-shrink: 0;
+		display: inline-block;
+		height: 16px;
+		width: 16px !important;
+		vertical-align: middle;
+		margin: 0 14px 0px 0px;
+		border: 1px solid #878787;
+
+		&--unique {
+			border-radius: 50%;
+		}
+
+		&:hover {
+			border-color: var(--color-primary-element);
+		}
+	}
 
 	.question__label {
 		flex: 1 1 100%;

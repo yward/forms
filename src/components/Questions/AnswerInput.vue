@@ -1,5 +1,6 @@
 <template>
 	<li class="question__item">
+		<div class="question__item__pseudoInput" :class="{'question__item__pseudoInput--unique':isUnique}" />
 		<input
 			ref="input"
 			:aria-label="t('forms', 'An answer for the {index} option', { index: index + 1 })"
@@ -47,6 +48,10 @@ export default {
 		},
 		index: {
 			type: Number,
+			required: true,
+		},
+		isUnique: {
+			type: Boolean,
 			required: true,
 		},
 		maxOptionLength: {
@@ -186,3 +191,32 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.question__item {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+
+	// Just taking styles from server radio-input items
+	&__pseudoInput {
+		flex-shrink: 0;
+		display: inline-block;
+		height: 16px;
+		width: 16px !important;
+		vertical-align: middle;
+		margin: 0 14px 0px 0px;
+		border: 1px solid #878787;
+
+		&--unique {
+			border-radius: 50%;
+		}
+
+		&:hover {
+			border-color: var(--color-primary-element);
+		}
+	}
+}
+
+</style>
