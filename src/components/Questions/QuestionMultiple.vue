@@ -299,6 +299,7 @@ export default {
 		padding: 0 0 0 30px;
 		line-height: 22px;
 		min-height: 34px;
+		height: min-content;
 
 		&::before {
 			box-sizing: border-box;
