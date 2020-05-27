@@ -195,47 +195,67 @@ class PageController extends Controller {
 		try {
 			$form = $this->formMapper->findByHash($hash);
 		} catch (DoesNotExistException $e) {
-			return new TemplateResponse('forms', 'notfound');
-		}
-
-		// Does the user have permissions to submit (resp. submitOnce)
-		if (!$this->formsService->canSubmit($form->getId())) {
-			return new TemplateResponse('forms', 'nosubmit');
+			return $this->provideTemplate('notfound');
 		}
 
 		// Does the user have access to form
 		if (!$this->formsService->hasUserAccess($form->getId())) {
-			return new TemplateResponse('forms', 'notfound');
+			return $this->provideTemplate('notfound');
+		}
+
+		// Does the user have permissions to submit (resp. submitOnce)
+		if (!$this->formsService->canSubmit($form->getId())) {
+			return $this->provideTemplate('nosubmit', $form);
 		}
 
 		// Has form expired
 		if ($form->getExpires() !== 0 && time() > $form->getExpires()) {
-			return new TemplateResponse('forms', 'expired');
+			return $this->provideTemplate('expired', $form);
 		}
 
+		// Main Template to fill the form
 		Util::addScript($this->appName, 'submit');
 		$this->initialStateService->provideInitialState($this->appName, 'form', $this->formsService->getPublicForm($form->getId()));
 		$this->initialStateService->provideInitialState($this->appName, 'maxStringLengths', $this->maxStringLengths);
+		return $this->provideTemplate('main', $form);
+	}
 
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 * @PublicPage
+	 * @param string $template
+	 * @param Form $form Necessary to set header on public forms, not necessary for 'notfound'-template
+	 * @return TemplateResponse
+	 */
+	public function provideTemplate(string $template, Form $form = null): ?TemplateResponse {
+		// If not logged in, use PublicTemplate
 		if (!$this->userSession->isLoggedIn()) {
 			Util::addStyle($this->appName, 'public');
-			$response = new PublicTemplateResponse($this->appName, 'main');
-			$response->setHeaderTitle($form->getTitle());
+			$response = new PublicTemplateResponse($this->appName, $template);
 
-			// Get owner and check display name privacy settings
-			$owner = $this->userManager->get($form->getOwnerId());
-			if ($owner instanceof IUser) {
-				$ownerAccount = $this->accountManager->getAccount($owner);
+			// Set Header
+			if ($template === 'notfound') {
+				$response->setHeaderTitle($this->l10n->t('Forms'));
+				$response->setHeaderDetails($this->l10n->t('Not found'));
+			} else {
+				$response->setHeaderTitle($form->getTitle());
 
-				$ownerName = $ownerAccount->getProperty(IAccountManager::PROPERTY_DISPLAYNAME);
-				if ($ownerName->getScope() === IAccountManager::VISIBILITY_PUBLIC) {
-					$response->setHeaderDetails($this->l10n->t('Shared by %s', [$ownerName->getValue()]));
+				// Get owner and check display name privacy settings
+				$owner = $this->userManager->get($form->getOwnerId());
+				if ($owner instanceof IUser) {
+					$ownerAccount = $this->accountManager->getAccount($owner);
+
+					$ownerName = $ownerAccount->getProperty(IAccountManager::PROPERTY_DISPLAYNAME);
+					if ($ownerName->getScope() === IAccountManager::VISIBILITY_PUBLIC) {
+						$response->setHeaderDetails($this->l10n->t('Shared by %s', [$ownerName->getValue()]));
+					}
 				}
 			}
 
 			return $response;
 		}
 
-		return new TemplateResponse($this->appName, 'main');
+		return new TemplateResponse($this->appName, $template);
 	}
 }
