@@ -209,6 +209,7 @@ export default {
 		border: 1px solid #878787;
 		border-radius: 1px;
 		position: relative;
+		top: 11px;
 
 		&--unique {
 			border-radius: 50%;
