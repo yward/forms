@@ -208,6 +208,7 @@ export default {
 		margin: 0 14px 0px 0px;
 		border: 1px solid #878787;
 		border-radius: 1px;
+		position: relative;
 
 		&--unique {
 			border-radius: 50%;
