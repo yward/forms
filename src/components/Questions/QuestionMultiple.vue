@@ -297,7 +297,12 @@ export default {
 		// Overwrite guest page core styles
 		text-align: left !important;
 		padding: 11px 0 11px 30px;
+		line-height: 22px;
 		&::before {
+			box-sizing: border-box;
+			width: 16px;
+			height: 16px;
+			margin-bottom: 0;
 			margin-left: -30px !important;
 			margin-right: 14px !important;
 		}
