@@ -103,7 +103,7 @@
 					:open.sync="questionMenuOpened"
 					:menu-title="t('forms', 'Add a question')"
 					:primary="true"
-					:default-icon="isLoadingQuestions ? 'icon-loading-small' : 'icon-add-white'">
+					:default-icon="isLoadingQuestions ? 'icon-loading-small' : 'icon-add--primarywhite'">
 					<ActionButton v-for="(answer, type) in answerTypes"
 						:key="answer.label"
 						:close-after-click="true"
@@ -502,7 +502,10 @@ export default {
 			// To align with Drag-Handle
 			margin-left: 16px;
 
-			.icon-add-white {
+			.icon-add--primarywhite {
+				// DIRTY QUICKFIX
+				// Force a white icon here even for dark mode, as vue-component remains blue, but can't control icon.
+				background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTYiIHdpZHRoPSIxNiIgdmVyc2lvbj0iMS4xIiB2aWV3Ym94PSIwIDAgMTYgMTYiPjxwYXRoIGQ9Ik05LjAyIDEzLjk4aC0ydi01aC01di0yaDV2LTVoMnY1bDUtLjAyOFY4Ljk4aC01eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo=);
 				opacity: 1;
 			}
 		}
